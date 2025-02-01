@@ -26,7 +26,8 @@ const connect = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log('MongoDB connected');
+        console.log('MongoDB connected',mongoose.connection.db.databaseName);
+
     } catch (err) {
         console.error('Initial MongoDB connection failed:', err.message);
         process.exit(1); // Exit the application on connection failure

@@ -18,4 +18,4 @@ const uploadSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Name", uploadSchema,"Assets");
+export default mongoose.model("Name", uploadSchema,"Portfolio_Assets");

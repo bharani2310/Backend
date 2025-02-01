@@ -34,4 +34,5 @@ const skillSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Skill", skillSchema,"Experience");
+export default mongoose.model("Skill", skillSchema,"Portfolio_Experience");
+
