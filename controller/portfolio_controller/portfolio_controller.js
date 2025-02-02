@@ -95,13 +95,13 @@ export const createSkill = async (req, res) => {
 
 
 export const createProject = async (req, res) => {
-    const {pic,project,description,url} = req.body;
+    const {pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment} = req.body;
 
-    console.log(pic,project,description,url)
+    console.log(pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment)
 
     try {
         const newSkill = new projectSchema({
-            pic,project,description,url
+            pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment
         });
         const savedProject = await newSkill.save();
         return res.status(200).json({
@@ -148,6 +148,38 @@ export const getSkill=async(req,res)=>{
 export const getProject=async(req,res)=>{
     try {
         const result=await projectSchema.find({})
+
+        if (!result) {
+            return res.status(404).json({
+              success: false,
+              message: "Project not found",
+            });
+          }
+
+        res.status(200).json({
+            success:true,
+            message:"Retrieved Successfully",
+            data:result
+    })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Retrieval failed",
+            data:error.message
+        })
+    }
+
+}
+
+
+export const getSingleProject=async(req,res)=>{
+    const id=req.params.id
+
+    console.log(id)
+    try {
+        const result=await projectSchema.findOne({ _id: id })
+
+        console.log("Result:",result)
 
         if (!result) {
             return res.status(404).json({

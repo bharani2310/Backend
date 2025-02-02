@@ -21,6 +21,30 @@ const projectSchema = new mongoose.Schema(
     url: {
         type: String,
     },
+    overview: {
+        type: String,
+    },
+    features: {
+        type: String,
+    },
+    frontend: {
+        type: String,
+    },
+    backend: {
+        type: String,
+    },
+    database: {
+        type: String,
+    },
+    demo: {
+        type: String,
+    },
+    challenges: {
+        type: String,
+    },
+    deployment: { 
+        type: String,
+    },
   },
   { timestamps: true }
 );
