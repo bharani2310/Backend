@@ -148,7 +148,6 @@ export const getSkill=async(req,res)=>{
 export const getProject=async(req,res)=>{
     try {
         const result=await projectSchema.find({})
-        console.log("result",result)
 
         if (!result) {
             return res.status(404).json({
@@ -198,10 +197,53 @@ export const updateSkill = async (req, res) => {
     }
 };
 
+export const updateProject = async (req, res) => {
+
+    const id=req.params.id
+    console.log(id)
+
+    try{
+        const updatedProject=await projectSchema.findByIdAndUpdate(id,{
+            $set:req.body
+        },{new:true})
+
+        res.status(200).json({
+            success:true,
+            message:'Successfully updated',
+            data:updatedProject,
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            message:'Failed to update',
+        });
+    }
+};
+
 export const deleteSkill=async(req,res)=>{
     const id=req.params.id
     try{
         await skillSchema.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success:true,
+            message:'Successfully deleted',
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            message:'Failed to delete',
+        });
+    }
+
+}
+
+export const deleteProject=async(req,res)=>{
+    const id=req.params.id
+    try{
+        await projectSchema.findByIdAndDelete(id);
 
         res.status(200).json({
             success:true,
