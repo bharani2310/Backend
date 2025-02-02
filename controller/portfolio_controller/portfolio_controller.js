@@ -1,5 +1,6 @@
 import uploadSchema from '../../models/portfolio_models/uploadSchema.js'
 import skillSchema from '../../models/portfolio_models/skillSchema.js'
+import projectSchema from '../../models/portfolio_models/projectSchema.js'
 
 export const uploadImage = async (req, res) => {
     const { name, image } = req.body;
@@ -93,10 +94,34 @@ export const createSkill = async (req, res) => {
 };
 
 
+export const createProject = async (req, res) => {
+    const {pic,project,description,url} = req.body;
+
+    console.log(pic,project,description,url)
+
+    try {
+        const newSkill = new projectSchema({
+            pic,project,description,url
+        });
+        const savedProject = await newSkill.save();
+        return res.status(200).json({
+            success: true,
+            message: 'The Project is Uploaded',
+            data: savedProject,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            data: err,
+        });
+    }
+};
+
+
 export const getSkill=async(req,res)=>{
     try {
         const result=await skillSchema.find({})
-
         if (!result) {
             return res.status(404).json({
               success: false,
@@ -118,6 +143,35 @@ export const getSkill=async(req,res)=>{
     }
 
 }
+
+
+export const getProject=async(req,res)=>{
+    try {
+        const result=await projectSchema.find({})
+        console.log("result",result)
+
+        if (!result) {
+            return res.status(404).json({
+              success: false,
+              message: "Project not found",
+            });
+          }
+
+        res.status(200).json({
+            success:true,
+            message:"Retrieved Successfully",
+            data:result
+    })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Retrieval failed",
+            data:error.message
+        })
+    }
+
+}
+
 
 
 export const updateSkill = async (req, res) => {
