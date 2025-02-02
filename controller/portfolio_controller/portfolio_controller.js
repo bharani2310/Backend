@@ -72,8 +72,8 @@ export const getImage=async(req,res)=>{
 export const createSkill = async (req, res) => {
     const {pic,company,role,description,start,end} = req.body;
 
-    console.log(company,role,description,start,end)
 
+  
     try {
         const newSkill = new skillSchema({
             pic,company,role,description,start,end
@@ -97,7 +97,6 @@ export const createSkill = async (req, res) => {
 export const createProject = async (req, res) => {
     const {pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment} = req.body;
 
-    console.log(pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment)
 
     try {
         const newSkill = new projectSchema({
@@ -175,11 +174,8 @@ export const getProject=async(req,res)=>{
 export const getSingleProject=async(req,res)=>{
     const id=req.params.id
 
-    console.log(id)
     try {
         const result=await projectSchema.findOne({ _id: id })
-
-        console.log("Result:",result)
 
         if (!result) {
             return res.status(404).json({
@@ -208,7 +204,7 @@ export const getSingleProject=async(req,res)=>{
 export const updateSkill = async (req, res) => {
 
     const id=req.params.id
-    console.log(id)
+
 
     try{
         const updatedTour=await skillSchema.findByIdAndUpdate(id,{
@@ -232,7 +228,7 @@ export const updateSkill = async (req, res) => {
 export const updateProject = async (req, res) => {
 
     const id=req.params.id
-    console.log(id)
+
 
     try{
         const updatedProject=await projectSchema.findByIdAndUpdate(id,{
