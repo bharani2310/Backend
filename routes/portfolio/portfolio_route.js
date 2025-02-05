@@ -1,5 +1,6 @@
 import express from 'express';
-import {uploadImage,getSkill,getImage,createSkill,updateSkill,deleteSkill,createProject,getProject,getSingleProject,updateProject,deleteProject} from "../../controller/portfolio_controller/portfolio_controller.js"
+import {uploadImage,getSkill,getImage,createSkill,updateSkill,deleteSkill,createProject,getProject,
+    getSingleProject,updateProject,deleteProject,createTech,getTech,updateTech,deleteTech} from "../../controller/portfolio_controller/portfolio_controller.js"
 
 
 const router = express.Router();
@@ -21,5 +22,12 @@ router.get("/getSkill/all",getSkill);
 router.post("/createSkill/newSkill",createSkill)
 router.put('/updateSkill/:id',updateSkill)
 router.delete('/deleteSkill/:id',deleteSkill)
+
+
+//Tech
+router.post("/createTech/newTech",createTech)
+router.get("/getTech/all",getTech);
+router.put('/updateTech/:id',updateTech)
+router.delete('/deleteTech/:id',deleteTech)
 
 export default router;

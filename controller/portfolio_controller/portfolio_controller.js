@@ -1,7 +1,10 @@
 import uploadSchema from '../../models/portfolio_models/uploadSchema.js'
 import skillSchema from '../../models/portfolio_models/skillSchema.js'
 import projectSchema from '../../models/portfolio_models/projectSchema.js'
+import techSchema from '../../models/portfolio_models/techSchema.js';
 
+
+//Profile Image
 export const uploadImage = async (req, res) => {
     const { name, image } = req.body;
 
@@ -69,6 +72,7 @@ export const getImage=async(req,res)=>{
 }
 
 
+//Skill
 export const createSkill = async (req, res) => {
     const {pic,company,role,description,start,end} = req.body;
 
@@ -92,31 +96,6 @@ export const createSkill = async (req, res) => {
         });
     }
 };
-
-
-export const createProject = async (req, res) => {
-    const {pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment} = req.body;
-
-
-    try {
-        const newSkill = new projectSchema({
-            pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment
-        });
-        const savedProject = await newSkill.save();
-        return res.status(200).json({
-            success: true,
-            message: 'The Project is Uploaded',
-            data: savedProject,
-        });
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            message: 'Internal server error',
-            data: err,
-        });
-    }
-};
-
 
 export const getSkill=async(req,res)=>{
     try {
@@ -142,6 +121,77 @@ export const getSkill=async(req,res)=>{
     }
 
 }
+
+export const updateSkill = async (req, res) => {
+
+    const id=req.params.id
+
+
+    try{
+        const updatedTour=await skillSchema.findByIdAndUpdate(id,{
+            $set:req.body
+        },{new:true})
+
+        res.status(200).json({
+            success:true,
+            message:'Successfully updated',
+            data:updatedTour,
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            message:'Failed to update',
+        });
+    }
+};
+
+export const deleteSkill=async(req,res)=>{
+    const id=req.params.id
+    try{
+        await skillSchema.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success:true,
+            message:'Successfully deleted',
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            message:'Failed to delete',
+        });
+    }
+
+}
+
+
+
+//Project
+export const createProject = async (req, res) => {
+    const {pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment} = req.body;
+
+
+    try {
+        const newSkill = new projectSchema({
+            pic,project,description,url,overview,features,frontend,backend,database,demo,challenges,deployment
+        });
+        const savedProject = await newSkill.save();
+        return res.status(200).json({
+            success: true,
+            message: 'The Project is Uploaded',
+            data: savedProject,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            data: err,
+        });
+    }
+};
+
+
 
 
 export const getProject=async(req,res)=>{
@@ -201,29 +251,7 @@ export const getSingleProject=async(req,res)=>{
 
 
 
-export const updateSkill = async (req, res) => {
 
-    const id=req.params.id
-
-
-    try{
-        const updatedTour=await skillSchema.findByIdAndUpdate(id,{
-            $set:req.body
-        },{new:true})
-
-        res.status(200).json({
-            success:true,
-            message:'Successfully updated',
-            data:updatedTour,
-        });
-    }
-    catch(err){
-        res.status(500).json({
-            success:false,
-            message:'Failed to update',
-        });
-    }
-};
 
 export const updateProject = async (req, res) => {
 
@@ -249,10 +277,12 @@ export const updateProject = async (req, res) => {
     }
 };
 
-export const deleteSkill=async(req,res)=>{
+
+
+export const deleteProject=async(req,res)=>{
     const id=req.params.id
     try{
-        await skillSchema.findByIdAndDelete(id);
+        await projectSchema.findByIdAndDelete(id);
 
         res.status(200).json({
             success:true,
@@ -268,10 +298,88 @@ export const deleteSkill=async(req,res)=>{
 
 }
 
-export const deleteProject=async(req,res)=>{
+
+//Technology
+
+export const createTech = async (req, res) => {
+    const {pic,tech,category} = req.body;
+
+
+  
+    try {
+        const newTech = new techSchema({
+            pic,tech,category
+        });
+        const savedTech = await newTech.save();
+        return res.status(200).json({
+            success: true,
+            message: 'The Tech is Uploaded',
+            data: savedTech,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            data: err,
+        });
+    }
+};
+
+export const getTech=async(req,res)=>{
+    try {
+        const result=await techSchema.find({})
+        if (!result) {
+            return res.status(404).json({
+              success: false,
+              message: "Tech not found",
+            });
+          }
+
+        res.status(200).json({
+            success:true,
+            message:"Retrieved Successfully",
+            data:result
+    })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Retrieval failed",
+            data:error.message
+        })
+    }
+
+}
+
+export const updateTech = async (req, res) => {
+
+    const id=req.params.id
+
+
+    try{
+        const updatedTech=await techSchema.findByIdAndUpdate(id,{
+            $set:req.body
+        },{new:true})
+
+        res.status(200).json({
+            success:true,
+            message:'Successfully updated',
+            data:updatedTech,
+        });
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            message:'Failed to update',
+        });
+    }
+};
+
+
+
+export const deleteTech=async(req,res)=>{
     const id=req.params.id
     try{
-        await projectSchema.findByIdAndDelete(id);
+        await techSchema.findByIdAndDelete(id);
 
         res.status(200).json({
             success:true,
