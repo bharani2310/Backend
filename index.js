@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import portfolio from './routes/portfolio/portfolio_route.js'
+import tour from './routes/tour/tour_route.js'
 import bodyParser from 'body-parser';
 
 
@@ -48,7 +49,7 @@ app.use(cors(corsOptions)); // CORS configuration
 
 // Routes
 app.use("/portfolio",portfolio)
-
+app.use("/tour",tour)
 
 
 
