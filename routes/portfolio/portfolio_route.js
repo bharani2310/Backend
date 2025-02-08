@@ -1,9 +1,12 @@
 import express from 'express';
-import {uploadImage,getSkill,getImage,createSkill,updateSkill,deleteSkill,createProject,getProject,
+import {verifyLogin,uploadImage,getSkill,getImage,createSkill,updateSkill,deleteSkill,createProject,getProject,
     getSingleProject,updateProject,deleteProject,createTech,getTech,updateTech,deleteTech} from "../../controller/portfolio_controller/portfolio_controller.js"
 
 
 const router = express.Router();
+
+//Login
+router.post('/login',verifyLogin);
 
 //image
 router.post("/upload",uploadImage);

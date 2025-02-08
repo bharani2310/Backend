@@ -2,6 +2,35 @@ import uploadSchema from '../../models/portfolio_models/uploadSchema.js'
 import skillSchema from '../../models/portfolio_models/skillSchema.js'
 import projectSchema from '../../models/portfolio_models/projectSchema.js'
 import techSchema from '../../models/portfolio_models/techSchema.js';
+import userSchema from '../../models/portfolio_models/userSchema.js';
+
+
+export const verifyLogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Find user by email
+        const user = await userSchema.findOne({ email });
+
+
+        // If user does not exist
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+
+        // Compare passwords (since we are not hashing)
+        if (password !== user.password) {
+            return res.status(401).json({ success: false, message: 'Incorrect email or password' });
+        }
+
+        return res.status(200).json({ success: true, message: 'Login successful', user });
+
+    } catch (error) {
+        console.error("Login Error:", error);
+        res.status(500).json({ success: false, message: 'Failed to login', error });
+    }
+};
+
 
 
 //Profile Image
