@@ -37,3 +37,4 @@ const cartSchema = new mongoose.Schema(
 
 // Export model with custom collection name: EComm_Cart
 export default mongoose.model("Cart", cartSchema, "EComm_Cart");
+     
