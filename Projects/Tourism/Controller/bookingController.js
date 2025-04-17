@@ -18,7 +18,7 @@ export const getBooking = async(req,res)=>{
 
     try {
         const book = await Booking.find({ userId: id })
-        console.log('NUMBER OF BOOKING ',book)
+        // console.log('NUMBER OF BOOKING ',book)
         res.status(200).json({success:true,message:'Success',data:book})
     } catch (err) {
         res.status(404).json({success:false,message:'not found'})
@@ -60,7 +60,7 @@ export const handleCancel=async(req,res)=>{
 export const handleUpdate = async(req,res)=>{
     const { id } = req.params;
     const updates = req.body;
-    console.log(updates)
+    // console.log(updates)
     try {
         const booking = await Booking.findByIdAndUpdate(id, updates, { new: true });
         if (!booking) {
@@ -68,7 +68,7 @@ export const handleUpdate = async(req,res)=>{
         }
         res.status(200).json({ success: true, message: 'Booking updated successfully', data: booking });
     } catch (error) {
-        console.error('Error updating booking:', error);
+        // console.error('Error updating booking:', error);
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 }

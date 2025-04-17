@@ -26,7 +26,7 @@ export const verifyLogin = async (req, res) => {
         return res.status(200).json({ success: true, message: 'Login successful', user });
 
     } catch (error) {
-        console.error("Login Error:", error);
+        // console.error("Login Error:", error);
         res.status(500).json({ success: false, message: 'Failed to login', error });
     }
 };

@@ -37,7 +37,7 @@ export const getSingleGalleryImages=async(req,res)=>{
 
 export const GalleryImages = async (req, res) => {
     const { genre } = req.query;
-    console.log(genre)
+    // console.log(genre)
     try {
         const gImages = await Gallery.find({ genre });
         const count = gImages.length; // Count of retrieved images
@@ -46,7 +46,7 @@ export const GalleryImages = async (req, res) => {
         }
         return res.status(200).json({ success: true, message: 'Retrieved Successfully', count, data: gImages });
     } catch (error) {
-        console.error('Error fetching images:', error);
+        // console.error('Error fetching images:', error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
@@ -98,7 +98,7 @@ export const getGalleryCount = async(req,res)=>{
 export const getAllGallery=async(req,res)=>{
 
     const page = parseInt(req.query.page);
-    console.log("page:",page);
+    // console.log("page:",page);
 
 
     try{
