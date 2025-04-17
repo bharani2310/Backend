@@ -91,7 +91,7 @@ io.on("connection",async(socket)=>{
             text:data?.text,
             imageUrl:data?.imageUrl,
             videoUrl:data?.videoUrl,
-            sender:data?.sender,
+            sender:data?.sender, 
             msgByUserId:data?.msgByUserId
         })
 

@@ -6,7 +6,7 @@ const router=express.Router()
 
 router.post('/register',registerUser)
 router.post('/email',checkEmail)
-router.post('/password',checkPassword)
+router.post('/password',checkPassword) 
 router.get('/user-details',userDetails)
 router.get('/getUser',getUserDetails)
 router.get('/getMessage',getMessage)

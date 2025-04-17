@@ -9,7 +9,7 @@ export const searchItems = async (req, res) => {
     // console.log("Query:", q);
 
     // Find categories matching the search term
-    const categories = await Category.find({
+    const categories = await Category.find({ 
       name: { $regex: q, $options: "i" },
     });
 

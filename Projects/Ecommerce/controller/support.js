@@ -12,7 +12,7 @@ import nodemailer from "nodemailer";
 
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
   
-    const mailOptions = {
+    const mailOptions = { 
         from: process.env.EMAIL,
         to: email,
         subject: "Email Verification OTP",

@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import { tokenHandler } from "../utils/tokenHandler.js";
 import { onlineUser } from "../utils/socket.js";
-
+ 
 export const registerUser=async(request,response)=>{
     // console.log("registring user")
     try {

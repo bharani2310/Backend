@@ -12,5 +12,5 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-// Export model with custom collection name: EComm_Categories
+// Export model with custom collection name: EComm_Categories 
 export default mongoose.model("Category", categorySchema, "EComm_Categories");

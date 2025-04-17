@@ -8,7 +8,7 @@ export const tokenHandler = async(token)=>{
             return {
                 message:"session logged out",
                 logout:true
-            }
+            } 
         }
         const  decode = await jwt.verify(token,process.env.JWT_SECRET_KEY)
     

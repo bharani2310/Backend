@@ -6,7 +6,7 @@ const messageSchema=new mongoose.Schema({
         default:''
     },
     imageUrl:{
-        type:String,
+        type:String, 
         default:''
     },
     videoUrl:{
