@@ -1,6 +1,6 @@
 import express from 'express';
 import { login,register } from '../Controller/authController.js';
-import { createBooking, getAllBooking, getBooking , getBookingsCount, handleCancel,handleUpdate} from '../controller/bookingController.js';
+import { createBooking, getAllBooking, getBooking , getBookingsCount, handleCancel,handleUpdate} from '../Controller/bookingController.js';
 import {postgalleryImages,putgalleryImages,getGalleryCount, getAllGallery,deleteGallery,GalleryImages,getSingleGalleryImages } from '../controller/galleryController.js';
 import { createReview , getReviewCount} from '../controller/reviewController.js';
 import { createTour, deleteTour, getAllTour, getFeaturedTour, getSingleTour, getTourBySearch, getTourCount, updateTour } from '../controller/tourController.js';
