@@ -47,6 +47,12 @@ app.use('/tour', tour);
 app.use('/chat', chat);
 app.use('/ecommerce',ecommerce)
 
+//✅ To prevent cold restart
+setInterval(() => {
+    Math.sqrt(Math.random()); 
+  }, 5 * 60 * 1000); // Every 5 minutes
+  
+
 app.get('/test-cookies', (req, res) => {
     console.log("Cookies:", req.cookies);
     res.json({ cookies: req.cookies });
