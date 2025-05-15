@@ -1,9 +1,13 @@
 import express from 'express';
 import {verifyLogin,uploadImage,getSkill,getImage,createSkill,updateSkill,deleteSkill,createProject,getProject,
     getSingleProject,updateProject,deleteProject,createTech,getTech,updateTech,deleteTech} from "../Controller/portfolio_controller.js"
+import {getPortfolioInfo} from '../Controller/controller.js'
 
 
 const router = express.Router();
+
+//Summary of All Get request
+router.get('/getAll',getPortfolioInfo)
 
 //Login
 router.post('/login',verifyLogin);
